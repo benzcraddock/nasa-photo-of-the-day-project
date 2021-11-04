@@ -1,6 +1,20 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 // Loading Screen on Page Load
+
+const StyledLoad = styled.div`
+  background-color: #011627;
+  color: #f6f7f8;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  
+
+`
+
 export default class PreLoadScreen extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +37,7 @@ export default class PreLoadScreen extends Component {
   }
   render() {
     return (
-      <div className="preload" id="preload" ref={this.PreLoadScreen}>
+      <StyledLoad id="preload" ref={this.PreLoadScreen}>
         <div className="logo">
           <h1 className="preloadHeader">Space Project</h1>
         </div>
@@ -31,7 +45,7 @@ export default class PreLoadScreen extends Component {
           <div className="loader1" id="loader1" />
           <div className="loader2" id="loader2" />
         </div>
-      </div>
+      </StyledLoad>
     );
   }
 }
