@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Cards from "./components/Cards";
 import DatePicker from "react-datepicker";
+
+import styled from 'styled-components';
+
 var moment = require("moment");
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const begin = moment().utcOffset(timezone)._d;
@@ -9,6 +12,26 @@ const max = moment().utcOffset(timezone)._d;
 const currentTime = moment()
   .utcOffset(timezone)
   .format();
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  background: linear-gradient(180deg, #011627, #f0eff4);
+`
+
+const StyledHeading = styled.h1`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: #fdfffc;
+`
 
 export default class Data extends Component {
   // Holds State
@@ -68,8 +91,8 @@ export default class Data extends Component {
 
   render() {
     return (
-      <>
-        <h1>Select Date:</h1>
+      <StyledContainer>
+        <StyledHeading>Select Date:</StyledHeading>
         {/* Displays Calendar */}
         <DatePicker
           maxDate={this.state.max}
@@ -77,7 +100,7 @@ export default class Data extends Component {
           onChange={this.handleChange}
         />
         <Cards data={this.state.data} />
-      </>
+      </StyledContainer>
     );
   }
 }

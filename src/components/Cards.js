@@ -1,8 +1,37 @@
 import React, { Component } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { ReadableText } from "./styled-components/ReadableText";
-import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
+// import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip"; 
+import styled from 'styled-components';
+
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  ;
+`
+const StyledHeading = styled.h1`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: #f6f7f8;
+
+  transition: all 0.2s ease-in-out;
+`
+
+const StyledImg = styled.img`
+  margin: .5rem;
+  width: 50%;
+  border: 4px solid #f6f7f8;
+`
 
 export default class Objects extends Component {
   render() {
@@ -10,13 +39,13 @@ export default class Objects extends Component {
       return <h1>Loading...</h1>;
     }
     return (
-      <div className="card">
+      <StyledContainer>
         {/* Title */}
-        <h1>{this.props.data[0].title}</h1>
+        <StyledHeading>{this.props.data[0].title}</StyledHeading>
         {/* Youtube Video */}
         {this.props.data[0].url.includes("image") ? (
           <Tooltip title="Click on image to view the image in HD">
-            <img
+            <StyledImg
               src={this.props.data[0].url}
               alt="Space Img"
               onClick={() => window.open(this.props.data[0].hdurl, "_blank")}
@@ -38,7 +67,7 @@ export default class Objects extends Component {
         {/* Description */}
         <ReadableText>{this.props.data[0].explanation}</ReadableText>
         {/* <Placeholder dates={this.state.startDate} /> */}
-      </div>
+      </StyledContainer>
     );
   }
 }
